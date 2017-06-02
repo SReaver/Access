@@ -9,9 +9,9 @@ namespace Access
 {
     public class Context
     {
-        public Context(string DbConnString)
+        public Context(string dbConnString)
         {
-            ConnectionDb = new OleDbConnection(DbConnString);
+            ConnectionDb = new OleDbConnection(dbConnString);
         }
 
         public OleDbConnection ConnectionDb { get; }
@@ -19,29 +19,19 @@ namespace Access
 
         public List<Employer> GetEmployes()
         {
-            //OleDbCommand cmd = new OleDbCommand();
-            //cmd.Connection = conn;
-            //cmd.CommandText = "select * from Employes";
+            var cmd = new OleDbCommand();
+            cmd.Connection = ConnectionDb;
+            cmd.CommandText = "select * from Employes";
+            
+            var emplist = new List<Employer>();
 
-            //OleDbDataReader reader = cmd.ExecuteReader();
-
-            //List<Employer> emplist = new List<Employer>();
-            //while (reader.Read())
-            //{
-            //    Employer em1 = new Employer();
-            //    em1.empid = reader.GetInt32(0);
-            //    em1.empfio = reader.GetString(1);
-            //    em1.address = reader.GetString(2);
-            //    em1.depid = reader.GetInt32(3);
-            //    em1.salary = reader.GetDecimal(4);
-            //    emplist.Add(em1);
-            //}
-
-
-
-            //return emplist;
-            return null;
-
+            var reader = cmd.ExecuteReader();
+            while (reader != null && reader.Read())
+            {
+                Employer em1 = new Employer(Int32.Parse(reader.GetInt32(0).ToString()), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetDecimal(4));
+                emplist.Add(em1);
+            }
+            return emplist;
         }
 
     }

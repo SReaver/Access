@@ -19,8 +19,9 @@ namespace Access
         static void Main(string[] args)
         {
             Context context = new Context(DbConnString);
-            context.ConnectionDb.Open();
-            
+            var result = context.GetEmployes();
+
+
         }
     }
 }
