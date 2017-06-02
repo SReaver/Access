@@ -9,10 +9,6 @@ using System.Data.OleDb;
 
 namespace Access
 {
- 
-   
-
-
     class Program
     {
         static readonly string AppPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -24,9 +20,7 @@ namespace Access
         {
             Context context = new Context(DbConnString);
             context.ConnectionDb.Open();
-
-           
-
+            
         }
     }
 }

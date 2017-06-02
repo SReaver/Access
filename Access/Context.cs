@@ -9,17 +9,12 @@ namespace Access
 {
     public class Context
     {
-        private OleDbConnection conn;
         public Context(string DbConnString)
         {
-            //IDbConnection connection = new OleDbConnection(DbConnString);
-            conn = new OleDbConnection(DbConnString);
+            ConnectionDb = new OleDbConnection(DbConnString);
         }
 
-        public OleDbConnection ConnectionDb
-        {
-            get { return conn; }
-        }
+        public OleDbConnection ConnectionDb { get; }
 
 
         public List<Employer> GetEmployes()

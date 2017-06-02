@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Access
 {
-    class Employer
+    public class Employer
     {
         public int empid { get; set; }
         public string empfio { get; set; }
